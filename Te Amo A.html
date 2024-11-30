@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Respuestas</title>
+    <style>
+        body {
+            background-color: #D32F2F; /* Color rojizo */
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+        }
+
+        .body__img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-top: 20px;
+        }
+
+        .buttons {
+            margin-top: 30px;
+        }
+
+        button {
+            background-color: #fff;
+            color: #D32F2F;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background-color: #D32F2F;
+            color: #fff;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>¿Te gustaría pasar la última semana de clases conmigo? 😿</h1>
+    <img src="https://i.pinimg.com/236x/71/ac/33/71ac33eaa46f49c456044dd1f5a88f64.jpg" alt="Imagen divertida" class="body__img" />
+    <div class="buttons">
+        <button id="yes">Sí</button>
+        <button id="no">No</button>
+    </div>
+
+    <script>
+        let yesCount = 0;
+
+        const vutonSi = document.getElementById('yes');
+        const vutonNo = document.getElementById('no');
+
+        // Respuestas al presionar "Sí"
+        const responses = [
+            'Awww te re quiero',
+            'Lo presionaste x segunda vez, eso es mas q una confirmacion?🙀🙀',
+            'De nuevo lo presionaste? Te re amo'
+        ];
+
+        // Función para redirigir a YouTube
+        const redirigir = () => {
+            location.href = 'https://www.youtube.com/watch?v=gaA7RAy5rYg';
+        };
+
+        // Función para mover el botón "No" aleatoriamente
+        const moverNo = () => {
+            const randomTop = Math.random() * window.innerHeight;
+            const randomLeft = Math.random() * window.innerWidth;
+            vutonNo.style.position = 'absolute';
+            vutonNo.style.top = randomTop + 'px';
+            vutonNo.style.left = randomLeft + 'px';
+        };
+
+        // Lógica para el botón "Sí"
+        vutonSi.addEventListener('click', () => {
+            yesCount++;
+
+            if (yesCount <= 3) {
+                alert(responses[yesCount - 1]);
+            } else if (yesCount === 4) {
+                redirigir(); // Redirigir a YouTube al 4° clic
+            }
+        });
+
+        // Lógica para el botón "No"
+        vutonNo.addEventListener('mouseover', moverNo); // Se mueve cuando el mouse pasa sobre él
+    </script>
+</body>
+</html>
